@@ -78,7 +78,7 @@ class SeamCarver:
 
         while len(np.where(self.mask[:, :] > 0)[0]) > 0:
             energy_map = self.calc_energy_map()
-            energy_map[np.where(self.mask[:, :] > 0)] *= -self.constant
+            energy_map[np.where(self.mask[:, :] > 0)] = (energy_map[np.where(self.mask[:, :] > 0)] * -self.constant)
             cumulative_map = self.cumulative_map_forward(energy_map)
             seam_idx = self.find_seam(cumulative_map)
             self.delete_seam(seam_idx)
